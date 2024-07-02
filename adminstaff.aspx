@@ -1,0 +1,111 @@
+﻿<%@ Page Title="" Language="C#" MasterPageFile="~/Site2.Master" AutoEventWireup="true" CodeBehind="adminstaff.aspx.cs" Inherits="Train_Management_System.adminstaff" %>
+<asp:Content ID="Content1" ContentPlaceHolderID="head" runat="server">
+        <script type="text/javascript">
+            $(document).ready(function () {
+
+                //$(document).ready(function () {
+                //$('.table').DataTable();
+                // });
+
+                $(".table").prepend($("<thead></thead>").append($(this).find("tr:first"))).dataTable();
+                //$('.table1').DataTable();
+            });
+        </script>
+</asp:Content>
+<asp:Content ID="Content2" ContentPlaceHolderID="ContentPlaceHolder1" runat="server">
+     <div class="container">
+<div class="row">
+<div class="col-md-5">
+<div class="card">
+   <div class="card-body">
+	  <div class="row">
+		 <div class="col">
+			<center>
+			   <h4>Staff</h4>
+			</center>
+		 </div>
+	  </div>
+	 
+	  <div class="row">
+		 <div class="col">
+			<hr>
+		 </div>
+	  </div>
+	  <div class="row">
+		 <div class="col-md-4">
+			<label>Staff ID</label>
+			<div class="form-group">
+			   <div class="input-group">
+				  <asp:TextBox CssClass="form-control" ID="TextBox1" runat="server" placeholder="ID"></asp:TextBox>
+				  <asp:Button class="btn btn-primary" ID="Button1" runat="server" Text="Go" OnClick="Button1_Click" />
+			   </div>
+			</div>
+		 </div>
+		 <div class="col-md-8">
+			<label>Staff Name</label>
+			<div class="form-group">
+			   <asp:TextBox CssClass="form-control" ID="TextBox2" runat="server" placeholder="Staff Name"></asp:TextBox>
+			</div>
+		 </div>
+		  
+		  <div class="col-md-8">
+		<label>role</label>
+		<div class="form-group">
+		   <asp:TextBox CssClass="form-control" ID="TextBox4" runat="server" placeholder="role"></asp:TextBox>
+		</div>
+		</div>
+		  <div class="col-md-4">
+		<label>train id</label>
+		<div class="form-group">
+		   <asp:TextBox CssClass="form-control" ID="TextBox5" runat="server" placeholder="train id"></asp:TextBox>
+		</div>
+		</div>
+	  </div>
+	  <div class="row">
+		 <div class="col-4">
+			<asp:Button ID="Button3" class="btn btn-lg btn-block btn-warning" runat="server" Text="Assign" OnClick="Button3_Click"/>
+		 </div>
+		 <div class="col-4">
+			<asp:Button ID="Button4" class="btn btn-lg btn-block btn-danger" runat="server" Text="Delete"  OnClick="Button4_Click"/>
+		 </div>
+	  </div>
+   </div>
+</div>
+
+</div>
+<div class="col-md-7">
+<div class="card">
+   <div class="card-body">
+	  <div class="row">
+		 <div class="col">
+			<center>
+			   <h4>Staff List</h4>
+			</center>
+		 </div>
+	  </div>
+	  <div class="row">
+		 <div class="col">
+			<hr>
+		 </div>
+	  </div>
+	  <div class="row">
+		  <asp:SqlDataSource ID="SqlDataSource1" runat="server" ConnectionString="<%$ ConnectionStrings:train_management_dbConnectionString %>" SelectCommand="SELECT s_id, s_name, role, train_id FROM Staff"></asp:SqlDataSource>
+
+				<div class="col">
+					<asp:GridView class="table table-striped table-bordered" ID="GridView1" runat="server" AutoGenerateColumns="False" DataSourceID="SqlDataSource1" DataKeyNames="s_id">
+						<Columns>
+							<asp:BoundField DataField="s_id" HeaderText="Staff ID" ReadOnly="True" SortExpression="s_id" />
+							<asp:BoundField DataField="s_name" HeaderText="Staff Name" SortExpression="s_name" />
+							<asp:BoundField DataField="role" HeaderText="Role" SortExpression="role" />
+							<asp:BoundField DataField="train_id" HeaderText="Train ID" SortExpression="train_id" />
+						</Columns>
+					</asp:GridView>
+				</div>
+
+	  </div>
+   </div>
+</div>
+</div>
+</div>
+</div>
+</asp:Content>
